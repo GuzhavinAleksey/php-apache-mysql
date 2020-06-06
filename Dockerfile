@@ -28,6 +28,7 @@ RUN set -ex; \
 		bcmath \
 		exif \
 		gd \
+		intl \
 		mysqli \
 		opcache \
 		zip \
