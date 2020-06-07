@@ -28,6 +28,8 @@ RUN set -ex; \
 		bcmath \
 		exif \
 		gd \
+		xmlrpc \
+		soap \
 		intl \
 		mysqli \
 		opcache \
