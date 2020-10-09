@@ -6,64 +6,36 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 # Ghostscript is required for rendering PDF previews
 		ghostscript \
-		       wget \
-                        npm \
-                  apt-utils \
-                      gnupg \
-                       cron \
- software-properties-common \
-        apt-transport-https \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-
+# install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 RUN set -ex; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-	        libonig-dev \
 		libfreetype6-dev \
 		libjpeg-dev \
 		libmagickwand-dev \
 		libpng-dev \
 		libzip-dev \
 		libxslt-dev \
-		libxml2-dev \
-                unixodbc-dev \
-                libjpeg62-turbo-dev \
-                libmcrypt-dev \
-                zlib1g-dev \
-                libicu-dev \
-                g++ \
-		libaio-dev \
-                libmemcached-dev \
-                freetds-dev \
-                libssl-dev \
-                openssl \
-                supervisor \
 	; \
 	\
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
 	docker-php-ext-install -j "$(nproc)" \
-                iconv \
-                sockets \
-                pdo \
-                gd \
-                pdo_mysql \
-                gettext \
-                mbstring \
-        	mysqli \
-        	xsl \
-        	exif \
-        	xml \
-        	zip \
-        	bcmath \
-        	xmlrpc \
+		bcmath \
+		exif \
+		gd \
+		xmlrpc \
+		soap \
 		intl \
-        	soap \
-        	opcache \
+		xsl \
+		mysqli \
+		opcache \
+		zip \
 	; \
 	pecl install imagick-3.4.4; \
 	pecl install redis; \
