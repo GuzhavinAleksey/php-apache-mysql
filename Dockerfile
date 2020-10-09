@@ -6,6 +6,13 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 # Ghostscript is required for rendering PDF previews
 		ghostscript \
+		       wget \
+                        npm \
+                  apt-utils \
+                      gnupg \
+                       cron \
+ software-properties-common \
+        apt-transport-https \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -16,24 +23,47 @@ RUN set -ex; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
+	        libonig-dev \
 		libfreetype6-dev \
 		libjpeg-dev \
 		libmagickwand-dev \
 		libpng-dev \
 		libzip-dev \
+		libxslt-dev \
+		libxml2-dev \
+                unixodbc-dev \
+                libjpeg62-turbo-dev \
+                libmcrypt-dev \
+                zlib1g-dev \
+                libicu-dev \
+                g++ \
+		libaio-dev \
+                libmemcached-dev \
+                freetds-dev \
+                libssl-dev \
+                openssl \
+                supervisor \
 	; \
 	\
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
 	docker-php-ext-install -j "$(nproc)" \
-		bcmath \
-		exif \
-		gd \
-		xmlrpc \
-		soap \
+                iconv \
+                sockets \
+                pdo \
+                gd \
+                pdo_mysql \
+                gettext \
+                mbstring \
+        	mysqli \
+        	xsl \
+        	exif \
+        	xml \
+        	zip \
+        	bcmath \
+        	xmlrpc \
 		intl \
-		mysqli \
-		opcache \
-		zip \
+        	soap \
+        	opcache \
 	; \
 	pecl install imagick-3.4.4; \
 	pecl install redis; \
