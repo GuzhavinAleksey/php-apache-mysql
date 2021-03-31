@@ -99,6 +99,15 @@ RUN set -eux; \
 # (replace all instances of "%h" with "%a" in LogFormat)
 	find /etc/apache2 -type f -name '*.conf' -exec sed -ri 's/([[:space:]]*LogFormat[[:space:]]+"[^"]*)%h([^"]*")/\1%a\2/g' '{}' +
 
+RUN touch /usr/local/etc/php/conf.d/uploads.ini
+
+RUN { \
+		echo 'upload_max_filesize = 150M'; \
+		echo 'post_max_size = 160M'; \
+		echo 'memory_limit = 656M'; \
+		echo 'max_execution_time = 600'; \
+	} > /usr/local/etc/php/conf.d/uploads.ini
+
 VOLUME /var/www/html
 
 
