@@ -22,8 +22,7 @@ RUN set -ex; \
 		libpng-dev \
 		libzip-dev \
 		libxslt-dev \
-		libmemcached-tools \
-		php-memcached \
+		libmemcached11 \
 	; \
 	\
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
@@ -38,12 +37,13 @@ RUN set -ex; \
 		mysqli \
 		opcache \
 		zip \
-		memcached \
 	; \
 	pecl install imagick-3.4.4; \
 	pecl install redis; \
+	pecl install memcached; \
 	docker-php-ext-enable imagick; \
 	docker-php-ext-enable redis; \
+	docker-php-ext-enable memcached; \
 	\
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
