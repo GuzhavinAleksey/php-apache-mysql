@@ -22,6 +22,7 @@ RUN set -ex; \
 		libpng-dev \
 		libzip-dev \
 		libxslt-dev \
+		libmemcached-tools \
 	; \
 	\
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
@@ -35,7 +36,6 @@ RUN set -ex; \
 		xsl \
 		mysqli \
 		opcache \
-		libmemcached-tools \
 		zip \
 	; \
 	pecl install imagick-3.4.4; \
