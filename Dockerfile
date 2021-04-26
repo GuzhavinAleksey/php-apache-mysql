@@ -44,8 +44,7 @@ RUN set -ex; \
 	pecl install memcached; \
 	docker-php-ext-enable imagick; \
 	docker-php-ext-enable redis; \
-	docker-php-ext-configure memcached; \
-	docker-php-ext-install memcached; \
+	docker-php-ext-enable memcached; \
 	\
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
