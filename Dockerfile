@@ -35,6 +35,7 @@ RUN set -ex; \
 		xsl \
 		mysqli \
 		opcache \
+		libmemcached-tools \
 		zip \
 	; \
 	pecl install imagick-3.4.4; \
